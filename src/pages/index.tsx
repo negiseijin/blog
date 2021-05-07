@@ -13,27 +13,29 @@ type Props = {
 }
 
 export const Home: NextPage<Props> = ({ allPosts }) => {
-  const landingPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+  const landingPost = allPosts ? allPosts[0] : null
+  const morePosts = allPosts ? allPosts.slice(1) : null
 
   return (
     <>
-      <Layout title={landingPost.title} description={landingPost.excerpt}>
-        <Head>
-          <title> Home | {CMS_NAME}</title>
-        </Head>
-        {landingPost && (
-          <LandingPost
-            title={landingPost.title}
-            coverImage={landingPost.coverImage}
-            date={landingPost.date}
-            author={landingPost.author}
-            slug={landingPost.slug}
-            excerpt={landingPost.excerpt}
-          />
-        )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Layout>
+      {landingPost && (
+        <Layout title={landingPost.title} description={landingPost.excerpt}>
+          <Head>
+            <title> Home | {CMS_NAME}</title>
+          </Head>
+          {landingPost && (
+            <LandingPost
+              title={landingPost.title}
+              coverImage={landingPost.coverImage}
+              date={landingPost.date}
+              author={landingPost.author}
+              slug={landingPost.slug}
+              excerpt={landingPost.excerpt}
+            />
+          )}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        </Layout>
+      )}
     </>
   )
 }
