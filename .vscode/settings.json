@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true, // Prettier を実行
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true, // ESLint を実行
+    "source.fixAll.stylelint": true // StyleLint を実行
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}
