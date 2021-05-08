@@ -2,8 +2,7 @@ import { PostTitle } from '@/components/atoms/PostTitle'
 import { PostBody } from '@/components/molecules/PostBody'
 import { PostHeader } from '@/components/molecules/PostHeader'
 import { Layout } from '@/components/templates/Layout'
-import { getPostBySlug, getAllPosts } from '@/lib/api'
-import markdownToHtml from '@/lib/markdownToHtml'
+import { BLOG_END_POINT } from '@/lib/constants'
 import PostType from '@/types/post'
 
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
@@ -18,7 +17,8 @@ type Props = {
 
 export const Post: NextPage<Props> = ({ post, morePosts }) => {
   const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
+
+  if (!router.isFallback && !post?.id) {
     return <ErrorPage statusCode={404} />
   }
   return (
@@ -27,18 +27,16 @@ export const Post: NextPage<Props> = ({ post, morePosts }) => {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <Layout title={post.title} description={post.excerpt}>
+          <Layout
+            title={post['post'].title}
+            description={post['post'].description}
+          >
             <article className="mb-32">
               <Head>
-                <meta property="og:image" content={post.ogImage.url} />
+                <meta property="og:image" content={post['post'].ogImage.url} />
               </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.content} />
+              <PostHeader post={post['post']} />
+              <PostBody content={post['post'].content} />
 
               {morePosts && (
                 <>{/* <div className="container mx-auto"></div> */}</>
@@ -55,40 +53,53 @@ export default Post
 
 type Params = {
   params: {
-    slug: string
+    id: string
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
-  const post = getPostBySlug(params.slug, [
-    'title',
-    'date',
-    'slug',
-    'author',
-    'content',
-    'ogImage',
-    'coverImage',
-  ])
-  const content = await markdownToHtml(post.content || '')
+  const id = params.id
+  const key = {
+    headers: { 'X-API-KEY': process.env.API_KEY },
+  }
+
+  const data = await fetch(BLOG_END_POINT + '/' + id, key)
+    .then((res) => res.json())
+    .catch(() => console.error(console.error()))
+
+  const post = {
+    id: data.id,
+    title: data.title,
+    date: data.publishedAt,
+    coverImage: data.coverImage.url,
+    description: data.description,
+    author: data.author,
+    ogImage: {
+      url: data.ogImage.url,
+    },
+    content: data.content,
+  }
 
   return {
     props: {
-      post: {
-        ...post,
-        content,
-      },
+      post: { ...data, post },
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getAllPosts(['slug'])
+  const key = {
+    headers: { 'X-API-KEY': process.env.API_KEY },
+  }
+  const data = await fetch(BLOG_END_POINT, key)
+    .then((res) => res.json())
+    .catch(() => console.error(console.error()))
 
   return {
-    paths: posts.map((posts) => {
+    paths: data.contents.map((content) => {
       return {
         params: {
-          slug: posts.slug,
+          id: content.id,
         },
       }
     }),

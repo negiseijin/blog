@@ -2,37 +2,32 @@ import { Avatar } from '@/components/atoms/Avatar'
 import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import { PostTitle } from '@/components/atoms/PostTitle'
-import Author from '@/types/author'
+import Post from '@/types/post'
 
 import React from 'react'
 
 type Props = {
-  title: string
-  coverImage: string
-  date: string
-  author: Author
+  post: Post
 }
 
-export const PostHeader: React.VFC<Props> = React.memo(
-  ({ title, coverImage, date, author }) => {
-    return (
-      <>
-        <PostTitle>{title}</PostTitle>
-        <div className="hidden md:block md:mb-12">
-          <Avatar name={author.name} picture={author.picture} />
+export const PostHeader: React.VFC<Props> = React.memo(({ post }) => {
+  return (
+    <>
+      <PostTitle>{post.title}</PostTitle>
+      <div className="hidden md:block md:mb-12">
+        <Avatar name={post.author.name} picture={post.author.image.url} />
+      </div>
+      <div className="mb-8 md:mb-16 sm:mx-0">
+        <div className="mb-6">
+          <CoverImage title={post.title} src={post.coverImage} />
         </div>
-        <div className="mb-8 md:mb-16 sm:mx-0">
-          <CoverImage title={title} src={coverImage} />
+        <div className="mb-6 text-lg">
+          <DateFormatter dateString={post.date} />
         </div>
-        <div className="max-w-2xl mx-auto">
-          <div className="block md:hidden mb-6">
-            <Avatar name={author.name} picture={author.picture} />
-          </div>
-          <div className="mb-6 text-lg">
-            <DateFormatter dateString={date} />
-          </div>
-        </div>
-      </>
-    )
-  }
-)
+      </div>
+      <div className="block max-w-2xl mb-6 mx-auto md:hidden">
+        <Avatar name={post.author.name} picture={post.author.image.url} />
+      </div>
+    </>
+  )
+})
