@@ -1,9 +1,9 @@
+import { NextApiRequest, NextApiResponse } from 'next'
+
 import { BLOG_END_POINT } from '@/lib/constants'
 import Contents from '@/types/contents'
 import Data from '@/types/data'
 import Post from '@/types/post'
-
-import { NextApiRequest, NextApiResponse } from 'next'
 
 const handler = async (
   _req: NextApiRequest,

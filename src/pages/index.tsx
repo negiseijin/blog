@@ -1,12 +1,12 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import useSwr from 'swr'
+
 import { LandingPost } from '@/components/molecules/LandingPost'
 import { MoreStories } from '@/components/molecules/MoreStories'
 import { Layout } from '@/components/templates/Layout'
 import { CMS_NAME } from '@/lib/constants'
 import Post from '@/types/post'
-
-import { NextPage } from 'next'
-import Head from 'next/head'
-import useSwr from 'swr'
 
 const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json())
 

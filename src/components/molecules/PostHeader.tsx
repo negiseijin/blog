@@ -1,10 +1,10 @@
+import React from 'react'
+
 import { Avatar } from '@/components/atoms/Avatar'
 import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import { PostTitle } from '@/components/atoms/PostTitle'
 import Post from '@/types/post'
-
-import React from 'react'
 
 type Props = {
   post: Post

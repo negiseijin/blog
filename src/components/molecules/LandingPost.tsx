@@ -1,10 +1,10 @@
+import Link from 'next/link'
+import React from 'react'
+
 import { Avatar } from '@/components/atoms/Avatar'
 import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import Post from '@/types/post'
-
-import Link from 'next/link'
-import React from 'react'
 
 type Props = {
   post: Post

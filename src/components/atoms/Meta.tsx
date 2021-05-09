@@ -1,7 +1,7 @@
-import { CMS_NAME } from '@/lib/constants'
-
 import Head from 'next/head'
 import React from 'react'
+
+import { CMS_NAME } from '@/lib/constants'
 
 type Props = {
   title: string

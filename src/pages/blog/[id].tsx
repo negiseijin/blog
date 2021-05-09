@@ -1,14 +1,14 @@
+import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import ErrorPage from 'next/error'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+
 import { PostTitle } from '@/components/atoms/PostTitle'
 import { PostBody } from '@/components/molecules/PostBody'
 import { PostHeader } from '@/components/molecules/PostHeader'
 import { Layout } from '@/components/templates/Layout'
 import { BLOG_END_POINT } from '@/lib/constants'
 import PostType from '@/types/post'
-
-import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
-import ErrorPage from 'next/error'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 type Props = {
   post: PostType

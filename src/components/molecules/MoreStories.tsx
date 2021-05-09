@@ -1,7 +1,7 @@
+import React from 'react'
+
 import { PostPreview } from '@/components/molecules/PostPreview'
 import Post from '@/types/post'
-
-import React from 'react'
 
 type Props = {
   posts: Post[]

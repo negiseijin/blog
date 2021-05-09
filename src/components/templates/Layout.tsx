@@ -1,8 +1,9 @@
+import React from 'react'
+
 import { Meta } from '@/components/atoms/Meta'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { Main } from '@/components/organisms/Main'
-import React from 'react'
 
 type Props = {
   title: string

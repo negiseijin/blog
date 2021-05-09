@@ -10,6 +10,7 @@ Bootstrap a developer-friendly NextJS app configured with:
 - Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
 
 ## Deploy your own
+
 You can copy this repository and deploy it to Netlify by clicking the button below.
 
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/negiseijin/blog"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
