@@ -1,7 +1,7 @@
+import React from 'react'
+
 import { PostPreview } from '@/components/molecules/PostPreview'
 import Post from '@/types/post'
-
-import React from 'react'
 
 type Props = {
   posts: Post[]
@@ -15,15 +15,7 @@ export const MoreStories: React.VFC<Props> = React.memo(({ posts }) => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
         {posts.map((post) => (
-          <PostPreview
-            key={post.slug}
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
-            slug={post.slug}
-            excerpt={post.excerpt}
-          />
+          <PostPreview key={post.id} post={post} />
         ))}
       </div>
     </section>

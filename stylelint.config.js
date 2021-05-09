@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ['stylelint-config-recommended', 'stylelint-config-recess-order'],
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-recess-order',
+    'stylelint-config-prettier',
+  ],
   rules: {
     'at-rule-no-unknown': [
       true,
@@ -8,6 +12,7 @@ module.exports = {
       },
     ],
     'block-no-empty': null,
-    'unit-whitelist': ['em', 'rem', 's'],
+    'unit-allowed-list': ['px', 'em', 'deg'],
+    'prettier/prettier': true,
   },
 }

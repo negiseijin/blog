@@ -1,56 +1,37 @@
+import { NextPage } from 'next'
+import Head from 'next/head'
+import useSwr from 'swr'
+
 import { LandingPost } from '@/components/molecules/LandingPost'
 import { MoreStories } from '@/components/molecules/MoreStories'
 import { Layout } from '@/components/templates/Layout'
-import { getAllPosts } from '@/lib/api'
 import { CMS_NAME } from '@/lib/constants'
 import Post from '@/types/post'
 
-import { GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
+const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json())
 
-type Props = {
-  allPosts?: Post[]
-}
+export const Home: NextPage = () => {
+  const { data, error } = useSwr<Post[], Error>('/api/blog', fetcher)
 
-export const Home: NextPage<Props> = ({ allPosts }) => {
-  const landingPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+  const landingPost = data ? data[0] : null
+  const morePosts = data ? data.slice(1) : null
+
+  if (error) return <div>Failed to load blog</div>
+  if (!data) return <div>Loading...</div>
 
   return (
     <>
-      <Layout title={landingPost.title} description={landingPost.excerpt}>
-        <Head>
-          <title> Home | {CMS_NAME}</title>
-        </Head>
-        {landingPost && (
-          <LandingPost
-            title={landingPost.title}
-            coverImage={landingPost.coverImage}
-            date={landingPost.date}
-            author={landingPost.author}
-            slug={landingPost.slug}
-            excerpt={landingPost.excerpt}
-          />
-        )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-      </Layout>
+      {landingPost && (
+        <Layout title={landingPost.title} description={landingPost.description}>
+          <Head>
+            <title>Home | {CMS_NAME}</title>
+          </Head>
+          {landingPost && <LandingPost post={landingPost} />}
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        </Layout>
+      )}
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
-
-  return {
-    props: { allPosts },
-  }
 }
 
 export default Home

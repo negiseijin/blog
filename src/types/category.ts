@@ -1,13 +1,10 @@
-import Image from './image'
-
-type Author = {
-  name: string
+type Category = {
   createdAt: string
   id: string
-  image: Image
+  name: string
   publishedAt: string
   revisedAt: string
   updatedAt: string
 }
 
-export default Author
+export default Category
