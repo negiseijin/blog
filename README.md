@@ -1,6 +1,4 @@
-# NextJS Typescript Boilerplate
-
-Bootstrap a developer-friendly NextJS app configured with:
+# Blog
 
 - [Typescript](https://www.typescriptlang.org/)
 - Linting with [ESLint](https://eslint.org/)

@@ -14,12 +14,12 @@ export const CoverImage: React.VFC<Props> = React.memo(({ title, src, id }) => {
       src={src}
       alt={`Cover Image for ${title}`}
       className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200': id,
+        'hover:shadow-medium transition-shadow duration-200 object-cover w-full h-full': id,
       })}
     />
   )
   return (
-    <div className="sm:mx-0">
+    <div className="relative flex h-96">
       {id ? (
         <Link as={`/blog/${id}`} href="/blog/[id]">
           <a aria-label={title}>{image}</a>

@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-
 import { Avatar } from '@/components/atoms/Avatar'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import Post from '@/types/post'
