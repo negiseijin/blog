@@ -17,10 +17,10 @@ export const PostHeader: React.VFC<Props> = React.memo(({ post }) => {
       <div className="hidden md:block md:mb-12">
         <Avatar name={post.author.name} picture={post.author.image.url} />
       </div>
+      <div className="mb-6">
+        <CoverImage title={post.title} src={post.coverImage} id={post.id} />
+      </div>
       <div className="mb-8 md:mb-16 sm:mx-0">
-        <div className="mb-6">
-          <CoverImage title={post.title} src={post.coverImage} />
-        </div>
         <div className="mb-6 text-lg">
           <DateFormatter dateString={post.date} />
         </div>
