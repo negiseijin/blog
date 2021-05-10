@@ -29,6 +29,7 @@ const handler = async (
       const post: Post = {
         id: content.id,
         title: content.title,
+        category: content.category,
         date: content.publishedAt,
         coverImage: content.coverImage.url,
         description: content.description,

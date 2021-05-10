@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Avatar } from '@/components/atoms/Avatar'
+import { Badge } from '@/components/atoms/Badge'
 import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import { PostTitle } from '@/components/atoms/PostTitle'
@@ -14,19 +14,35 @@ export const PostHeader: React.VFC<Props> = React.memo(({ post }) => {
   return (
     <>
       <PostTitle>{post.title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={post.author.name} picture={post.author.image.url} />
+      <div className="mb-4">
+        {post.category.map((category) => (
+          <Badge
+            key={category.id}
+            bgColor="bg-indigo-700"
+            color="text-indigo-100"
+            name={category.name}
+          />
+        ))}
+      </div>
+      <div className="flex mb-6 text-lg md:mb-12 sm:mx-0">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <DateFormatter dateString={post.date} />
       </div>
       <div className="mb-6">
-        <CoverImage title={post.title} src={post.coverImage} id={post.id} />
-      </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <div className="mb-6 text-lg">
-          <DateFormatter dateString={post.date} />
-        </div>
-      </div>
-      <div className="block max-w-2xl mb-6 mx-auto md:hidden">
-        <Avatar name={post.author.name} picture={post.author.image.url} />
+        <CoverImage title={post.title} src={post.coverImage} />
       </div>
     </>
   )

@@ -12,10 +12,9 @@ import PostType from '@/types/post'
 
 type Props = {
   post: PostType
-  morePosts: PostType[]
 }
 
-export const Post: NextPage<Props> = ({ post, morePosts }) => {
+export const Post: NextPage<Props> = ({ post }) => {
   const router = useRouter()
 
   if (!router.isFallback && !post?.id) {
@@ -27,20 +26,13 @@ export const Post: NextPage<Props> = ({ post, morePosts }) => {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <Layout
-            title={post['post'].title}
-            description={post['post'].description}
-          >
+          <Layout title={post.title} description={post.description}>
             <article className="mb-32">
               <Head>
-                <meta property="og:image" content={post['post'].ogImage.url} />
+                <meta property="og:image" content={post.ogImage.url} />
               </Head>
-              <PostHeader post={post['post']} />
-              <PostBody content={post['post'].content} />
-
-              {morePosts && (
-                <>{/* <div className="container mx-auto"></div> */}</>
-              )}
+              <PostHeader post={post} />
+              <PostBody content={post.content} />
             </article>
           </Layout>
         </>
@@ -51,14 +43,8 @@ export const Post: NextPage<Props> = ({ post, morePosts }) => {
 
 export default Post
 
-type Params = {
-  params: {
-    id: string
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
-  const id = params.id
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context.params.id
   const key = {
     headers: { 'X-API-KEY': process.env.API_KEY },
   }
@@ -70,6 +56,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
   const post = {
     id: data.id,
     title: data.title,
+    category: data.category,
     date: data.publishedAt,
     coverImage: data.coverImage.url,
     description: data.description,
@@ -82,7 +69,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: Params) => {
 
   return {
     props: {
-      post: { ...data, post },
+      post: post,
     },
   }
 }
@@ -95,14 +82,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .then((res) => res.json())
     .catch(() => console.error(console.error()))
 
+  const paths = data.contents.map((data) => `/blog/${data.id}`)
+
   return {
-    paths: data.contents.map((content) => {
-      return {
-        params: {
-          id: content.id,
-        },
-      }
-    }),
+    paths,
     fallback: false,
   }
 }

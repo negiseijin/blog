@@ -1,4 +1,3 @@
-import cn from 'classnames'
 import Link from 'next/link'
 import React from 'react'
 
@@ -13,9 +12,7 @@ export const CoverImage: React.VFC<Props> = React.memo(({ title, src, id }) => {
     <img
       src={src}
       alt={`Cover Image for ${title}`}
-      className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200 object-cover w-full h-full': id,
-      })}
+      className="shadow-small hover:shadow-medium transition-shadow duration-200 object-cover w-full h-full"
     />
   )
   return (
