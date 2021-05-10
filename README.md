@@ -7,35 +7,57 @@
 - Linting, typechecking and formatting on by default using [`husky`](https://github.com/typicode/husky) for commit hooks
 - Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
 
-## Deploy your own
+## 機能（予定機能含む）
+- 記事一覧
+- カテゴリー別記事一覧
+- 最新の記事一覧
+- 検索
+- パンくずリスト
+- 記事詳細
+  - 目次
+  - SNSシェアボタン
+  - 下書きプレビュー
+  - 関連記事
+- サイトマップ
 
-You can copy this repository and deploy it to Netlify by clicking the button below.
+## 構成図
+![architecture](public/architecture.jpg 'architecture')
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/negiseijin/blog"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+## 技術構成
+- Next（SSG）
+- microCMS（post）
+- Netlify（Hosting, Functions）
+- ESLint
+- Prettier
+- Tailwind CSS
+- StyleLint
 
-After clicking that button, you’ll authenticate with GitHub and choose a repository name. Netlify will then automatically create a repository in your GitHub account with a copy of the files from the template. Next, it will build and deploy the new site on Netlify, bringing you to the site dashboard when the build is complete.
+## microCMSのAPIスキーマ設定
 
-## Build & Deployment
+### ブログ
+endpoint: blog
+type: リスト形式
 
-### Deploying with CLI
+| フィールドID | 表示名 | 種類 |
+| ------------- | ------------- | ----- |
+| title | タイトル | テキストフィールド |
+| category | カテゴリー | コンテンツ参照 - カテゴリー |
+| toc_visible | 目次 | 真偽値 |
+| body | 本文 | リッチエディタ |
+| description | 概要 | テキストフィールド |
+| ogimage | OGP画像 | 画像 |
+| related_blogs | 関連記事 | 複数コンテンツ参照 - ブログ |
 
-You need to install Netlify's CLI first:
+### カテゴリー
+endpoint: categories
+type: リスト形式
 
-```
-npm install -g netlify-cli
-```
+| フィールドID | 表示名 | 種類 |
+| ------------- | ------------- | ----- |
+| name | 名前 | テキストフィールド |
 
-Then run the following command:
 
-```
-make deploy
-```
-
-### Deploying with Netlify Build
-
-Create a new Netlify site and link it to your repository. Netlify will detect the Rust toolchain automatically, build the code and deploy it for you.
-
-## How to use
+## 開発方法
 
 ```bash
 # clone
