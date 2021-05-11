@@ -10,20 +10,20 @@ type Props = {
 
 export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
   return (
-    <div className="w-full px-4">
+    <div className="w-full bg-white rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
       <Link as={`/blog/${post.id}`} href="/blog/[id]">
-        <a className="hover:underline">
-          <div className="relative flex h-96 mb-8ß">
+        <a className="hover:underline hover:shadow-lg">
+          <div className="relative flex h-96 mb-8">
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-t-lg"
               src={post.coverImage}
               alt={post.title}
             />
           </div>
-          <h2 className="mb-4 text-2xl font-semibold font-heading text-blue-800">
+          <h2 className="mb-4 mx-4 text-2xl font-semibold font-heading">
             {post.title}
           </h2>
-          <div className="my-4">
+          <div className="m-4">
             {post.category.map((category) => (
               <Badge
                 key={category.id}
@@ -33,7 +33,7 @@ export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
               />
             ))}
           </div>
-          <div className="flex flex-row mb-4">
+          <div className="flex flex-row mb-4 mx-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -50,7 +50,7 @@ export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
             </svg>
             <DateFormatter dateString={post.date} />
           </div>
-          <p className="my-3 text-base text-gray-500 leading-loose">
+          <p className="my-3 mx-4 text-base text-gray-600 leading-loose">
             {post.description}
           </p>
         </a>
