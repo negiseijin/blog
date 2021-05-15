@@ -1,9 +1,13 @@
 import { AppProps } from 'next/app'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 
 import '@/styles/globals.css'
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+  const SafeHydrate = dynamic(() => import('@/components/atoms/SafeHydrate'), {
+    ssr: false,
+  })
   return (
     <>
       <Head>
@@ -14,7 +18,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <Component {...pageProps} />
+      <SafeHydrate>
+        <Component {...pageProps} />
+      </SafeHydrate>
     </>
   )
 }
