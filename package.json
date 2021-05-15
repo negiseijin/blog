@@ -14,7 +14,7 @@
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write ./src/**/*.{ts,tsx,js,jsx}",
     "lint": "eslint ./src/**/*.{ts,tsx,js,jsx}",
-    "lint--fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx}",
+    "lint --fix": "eslint --fix ./src/**/*.{ts,tsx,js,jsx}",
     "lint:css": "stylelint --fix ./src/**/*.{css,scss,sass}",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test"
@@ -37,8 +37,7 @@
     "date-fns": "^2.21.3",
     "next": "latest",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "swr": "^0.5.6"
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.5",
