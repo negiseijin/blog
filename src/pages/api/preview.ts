@@ -11,8 +11,8 @@ const handler = async (
   }
 
   const post = await fetch(
-    `${BLOG_END_POINT}/${req.query.slug}?fields=id&draftKey=${req.query.draftKey}`,
-    { headers: { 'X-API-KEY': process.env.API_KEY || '' } }
+    `${BLOG_END_POINT}${req.query.slug}?fields=id&draftKey=${req.query.draftKey}`,
+    { headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY || '' } }
   )
     .then((res) => res.json())
     .catch((error) => console.error(error))

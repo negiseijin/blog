@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { Badge } from '@/components/atoms/Badge'
-import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import Post from '@/types/post'
 
@@ -12,54 +10,37 @@ type Props = {
 
 export const LandingPost: React.VFC<Props> = React.memo(({ post }) => {
   return (
-    <div className="md:flex bg-gray-100 rounded-xl p-8 md:p-0 shadow-lg">
-      <section className="bg-white rounded-lg">
-        <div className="mb-4 md:mb-8">
-          <CoverImage title={post.title} src={post.coverImage} id={post.id} />
-        </div>
-        <div className="grid gap-4 pb-8 mx-4">
-          <h3 className="mx-4 text-4xl lg:text-6xl leading-tight">
-            {post.title}
-          </h3>
-          <div className="mx-4">
-            {post.category.map((category) => (
-              <Badge
-                key={category.id}
-                bgColor="bg-indigo-700"
-                color="text-indigo-100"
-                name={category.name}
-              />
-            ))}
-          </div>
-          <div className="flex flex-row mx-4 text-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <DateFormatter dateString={post.date} />
-          </div>
-          <div className="mx-4">
-            <p className="text-lg leading-relaxed">{post.description}</p>
-          </div>
-          <div className="mx-4">
-            <Link as={`/blog/${post.id}`} href="/blog/[id]">
-              <a className="text-lg font-medium text-red-500 underline hover:no-underline">
-                Read more
-              </a>
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="absolute w-full bottom-0 left-0">
+      <div className="relative max-w-4xl mx-auto py-8 px-4 md:py-16">
+        <h2 className="my-8 text-white text-4xl lg:text-6xl font-bold uppercase">
+          {post.title}
+        </h2>
+        <p className="flex flex-row my-8 text-white text-lg lg:text-xl font-bold uppercase">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <DateFormatter dateString={post.date} />
+        </p>
+        <p className="my-8 text-white text-2xl lg:text-4xl font-bold uppercase">
+          {post.description}
+        </p>
+        <Link as={`/blog/${post.id}`} href="/blog/[id]">
+          <a className="inline-block w-full md:w-auto px-8 py-5 text-sm font-bold uppercase bg-pink-500 hover:bg-pink-400 transition duration-200 rounded-lg text-white">
+            Read more
+          </a>
+        </Link>
+      </div>
     </div>
   )
 })

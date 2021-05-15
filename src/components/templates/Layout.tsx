@@ -4,19 +4,20 @@ import { Meta } from '@/components/atoms/Meta'
 import { Footer } from '@/components/organisms/Footer'
 import { Header } from '@/components/organisms/Header'
 import { Main } from '@/components/organisms/Main'
+import Post from '@/types/post'
 
 type Props = {
-  title: string
-  description: string
+  post: Post
+  home?: boolean
   children: React.ReactNode
 }
 
 export const Layout: React.VFC<Props> = React.memo(
-  ({ title, description, children }) => {
+  ({ post, home, children }) => {
     return (
       <>
-        <Meta title={title} description={description} />
-        <Header />
+        <Meta title={post.title} description={post.description} />
+        <Header post={post} home={home} />
         <div className="min-h-screen py-12">
           <Main>{children}</Main>
         </div>

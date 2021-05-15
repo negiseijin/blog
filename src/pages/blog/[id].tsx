@@ -26,7 +26,7 @@ export const Post: NextPage<Props> = ({ post }) => {
         <PostTitle>Loading…</PostTitle>
       ) : (
         <>
-          <Layout title={post.title} description={post.description}>
+          <Layout post={post}>
             <article className="mb-32">
               <Head>
                 <meta property="og:image" content={post.ogImage.url} />
@@ -46,10 +46,10 @@ export default Post
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params.id
   const key = {
-    headers: { 'X-API-KEY': process.env.API_KEY },
+    headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY },
   }
 
-  const data = await fetch(BLOG_END_POINT + '/' + id, key)
+  const data = await fetch(BLOG_END_POINT + id, key)
     .then((res) => res.json())
     .catch(() => console.error(console.error()))
 
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const key = {
-    headers: { 'X-API-KEY': process.env.API_KEY },
+    headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY },
   }
   const data = await fetch(BLOG_END_POINT, key)
     .then((res) => res.json())

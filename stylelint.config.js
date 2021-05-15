@@ -12,7 +12,7 @@ module.exports = {
       },
     ],
     'block-no-empty': null,
-    'unit-allowed-list': ['px', 'em', 'deg'],
+    'unit-allowed-list': ['px', 'em', 'deg', 'vh'],
     'prettier/prettier': true,
   },
 }

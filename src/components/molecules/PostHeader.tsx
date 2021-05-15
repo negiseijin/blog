@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Badge } from '@/components/atoms/Badge'
-import { CoverImage } from '@/components/atoms/CoverImage'
 import { DateFormatter } from '@/components/atoms/DateFormatter'
 import { PostTitle } from '@/components/atoms/PostTitle'
 import Post from '@/types/post'
@@ -40,9 +39,6 @@ export const PostHeader: React.VFC<Props> = React.memo(({ post }) => {
           />
         </svg>
         <DateFormatter dateString={post.date} />
-      </div>
-      <div className="mb-6">
-        <CoverImage title={post.title} src={post.coverImage} />
       </div>
     </>
   )

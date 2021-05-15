@@ -11,7 +11,7 @@ const handler = async (
 ): Promise<void> => {
   try {
     const key = {
-      headers: { 'X-API-KEY': process.env.API_KEY },
+      headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY },
     }
     const data: Data = await fetch(BLOG_END_POINT, key)
       .then((res) => res.json())
