@@ -8,7 +8,7 @@ import Contents from '@/types/contents'
 import Post from '@/types/post'
 
 type Props = {
-  allPosts: Post[]
+  allPosts?: Post[]
 }
 
 export const Home: NextPage<Props> = ({ allPosts }) => {
