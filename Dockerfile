@@ -5,13 +5,12 @@ WORKDIR /app
 ARG NODE_ENV=production
 ENV PATH=/app/node_modules/.bin:$PATH \
     NODE_ENV="$NODE_ENV"
-RUN apk --no-cache add curl && \
-    apk add git
+RUN apk --no-cache add curl openssh-client git
 
-# sshキーの追加
-ADD .ssh /root/.ssh
-RUN chmod 600 /root/.ssh/*
-RUN git clone git@github.com:${OWNER?}/${REPOSITORY?}
+# github.com のための公開鍵をダウンロード
+RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
+# プライベート・リポジトリのクローン
+RUN --mount=type=ssh git clone git@github.com:${OWNER?}/${REPOSITORY?}
 
 COPY package.json yarn.lock /app/
 EXPOSE 3000
