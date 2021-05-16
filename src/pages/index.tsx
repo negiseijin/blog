@@ -52,11 +52,10 @@ export const getStaticProps: GetStaticProps = async () => {
       date: content.publishedAt,
       coverImage: content.coverImage.url,
       description: content.description,
-      author: content.author,
       ogImage: {
         url: content.ogImage.url,
       },
-      content: content.content,
+      body: content.body,
     }
 
     return post

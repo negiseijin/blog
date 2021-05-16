@@ -13,14 +13,14 @@ export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
     <div className="w-full bg-white rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
       <Link as={`/blog/${post.id}`} href="/blog/[id]">
         <a className="hover:underline hover:shadow-lg">
-          <div className="relative flex h-96 mb-8">
+          <div className="relative flex mb-8 h-96">
             <img
-              className="w-full h-full object-cover rounded-t-lg"
+              className="object-cover w-full h-full rounded-t-lg"
               src={post.coverImage}
               alt={post.title}
             />
           </div>
-          <h2 className="mb-4 mx-4 text-2xl font-semibold font-heading">
+          <h2 className="mx-4 mb-4 text-2xl font-semibold font-heading">
             {post.title}
           </h2>
           <div className="m-4">
@@ -33,10 +33,10 @@ export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
               />
             ))}
           </div>
-          <div className="flex flex-row mb-4 mx-4">
+          <div className="flex flex-row mx-4 mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="w-6 h-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -50,7 +50,7 @@ export const PostPreview: React.VFC<Props> = React.memo(({ post }) => {
             </svg>
             <DateFormatter dateString={post.date} />
           </div>
-          <p className="my-3 mx-4 text-base text-gray-600 leading-loose">
+          <p className="mx-4 my-3 text-base leading-loose text-gray-600">
             {post.description}
           </p>
         </a>
