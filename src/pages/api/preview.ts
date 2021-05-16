@@ -13,7 +13,7 @@ const handler = async (
     res.status(400).json({ error: 'missing queryparamaeter' })
   }
 
-  const post = await fetch(`${BLOG_END_POINT}?${id}?&draftKey=${draftKey}`, {
+  const post = await fetch(`${BLOG_END_POINT}/${id}?&draftKey=${draftKey}`, {
     headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY || '' },
   })
     .then((res) => res.json())
