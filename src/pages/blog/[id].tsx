@@ -44,7 +44,7 @@ export const Post: NextPage<Props> = ({ post }) => {
 export default Post
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params.id
+  const id = context.params?.id
   const key = {
     headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY },
   }

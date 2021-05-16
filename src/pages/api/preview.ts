@@ -24,11 +24,12 @@ const handler = async (
   }
 
   res.setPreviewData({
+    ...post,
     id: post.id,
     draftKey: draftKey,
   })
 
-  res.writeHead(307, { Location: `/${post.id}` })
+  res.writeHead(307, { Location: `/blog/${post.id}` })
   res.end('Preview mode enabled')
 }
 
