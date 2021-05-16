@@ -8,6 +8,7 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
+    "plugin:tailwind/recommended",
     "plugin:prettier/recommended",
     "prettier"
   ],
