@@ -32,7 +32,7 @@ export const Post: NextPage<Props> = ({ post }) => {
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
               <PostHeader post={post} />
-              <PostBody content={post.content} />
+              <PostBody content={post.body} />
             </article>
           </Layout>
         </>
@@ -60,11 +60,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     date: data.publishedAt,
     coverImage: data.coverImage.url,
     description: data.description,
-    author: data.author,
     ogImage: {
       url: data.ogImage.url,
     },
-    content: data.content,
+    body: data.body,
   }
 
   return {

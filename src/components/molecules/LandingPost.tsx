@@ -10,15 +10,15 @@ type Props = {
 
 export const LandingPost: React.VFC<Props> = React.memo(({ post }) => {
   return (
-    <div className="absolute w-full bottom-0 left-0">
-      <div className="relative max-w-4xl mx-auto py-8 px-4 md:py-16">
-        <h2 className="my-8 text-white text-4xl lg:text-6xl font-bold uppercase">
+    <div className="absolute bottom-0 left-0 w-full">
+      <div className="relative max-w-4xl px-4 py-8 mx-auto md:py-16">
+        <h2 className="my-8 text-4xl font-bold text-white uppercase lg:text-6xl">
           {post.title}
         </h2>
-        <p className="flex flex-row my-8 text-white text-lg lg:text-xl font-bold uppercase">
+        <p className="flex flex-row my-8 text-lg font-bold text-white uppercase lg:text-xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -32,11 +32,11 @@ export const LandingPost: React.VFC<Props> = React.memo(({ post }) => {
           </svg>
           <DateFormatter dateString={post.date} />
         </p>
-        <p className="my-8 text-white text-2xl lg:text-4xl font-bold uppercase">
+        <p className="my-8 text-2xl font-bold text-white uppercase lg:text-4xl">
           {post.description}
         </p>
         <Link as={`/blog/${post.id}`} href="/blog/[id]">
-          <a className="inline-block w-full md:w-auto px-8 py-5 text-sm font-bold uppercase bg-pink-500 hover:bg-pink-400 transition duration-200 rounded-lg text-white">
+          <a className="inline-block w-full px-8 py-5 text-sm font-bold text-white uppercase bg-pink-500 rounded-lg md:w-auto hover:bg-pink-400 transition duration-200">
             Read more
           </a>
         </Link>
