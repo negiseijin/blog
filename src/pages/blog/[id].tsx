@@ -32,7 +32,7 @@ export const Post: NextPage<Props> = ({ post }) => {
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
               <PostHeader post={post} />
-              <PostBody body={post.body} />
+              <PostBody content={post.body} />
             </article>
           </Layout>
         </>
